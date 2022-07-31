@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Room } from './interfaces/room';
 
 @Component({
   selector: 'app-root',

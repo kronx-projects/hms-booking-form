@@ -67,7 +67,10 @@
               "browserTarget": "booking:build:production"
             },
             "development": {
-              "browserTarget": "booking:build:development"
+              "browserTarget": "booking:build:development",
+              "ssl": true,
+              "sslKey": "ssl/server.key",
+              "sslCert": "ssl/server.crt"
             }
           },
           "defaultConfiguration": "development"

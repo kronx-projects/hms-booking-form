@@ -1,0 +1,37 @@
+<div class="booking-left-block margin-top-big">
+    <h2 class="title-block-h2">Общая информация:</h2>
+    <h3 class="title-block-h3">"Уютный Уголок" частный сектор в Кабардинке</h3>
+    <div class="row">
+        <div class="col-sm-5 col-12">
+            <img src="https://edem-v-gosti.ru/upload/resize_cache/iblock/920/e4idkz0sxkxomnriyzkmw0d42yqe30i4/200_200_0/20180824_174831.jpg"
+                style="width: 100%;">
+        </div>
+        <div class="col-sm-7 col-12">
+            <b>Адрес:</b> <br>
+            г. Геленджик, п. Кабардинка, ул. Дружбы, 27/А dd
+        </div>
+    </div>
+</div>
+<div class="booking-left-block">
+    <div class="col-md-12" >
+        <h3 class="title-block-h2">Вы бронируете: <br> <b>{{selectedRoom.name}}</b></h3>
+        <div class="row"  *ngIf="selectedRoom.countPerson">
+            <div class="col-sm-5">
+                <img [src]="selectedRoom.image" 
+                    style="width: 100%;">
+            </div>
+
+            <div class="col-sm-7" >
+                <div>
+                    <b>Число гостей: </b> <br>
+                    до {{selectedRoom.countPerson}}
+                </div>
+                <div>
+                    <b>Площадь: </b><br>
+                    {{selectedRoom.area}} м<sup>2</sup>
+                </div>
+        </div>
+        
+        </div>
+    </div>
+</div>

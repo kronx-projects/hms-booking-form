@@ -1,0 +1,22 @@
+.margin-top-big {
+    margin-top: 75px;
+}
+.booking-left-block, .booking-right-block {
+    
+    background-color: white;
+    min-height: 80px;
+    width: 100%;
+    height: auto;
+    padding:10px;
+    border-radius: 20px;
+    border: 1px solid #C00;
+}
+.title-block-h2 {
+    font-size: 18px;
+    line-height: 1.1em;
+    padding: 10px 5px;
+}
+.title-block-h3 {
+    font-size: 14px;
+    padding: 10px 5px;
+}

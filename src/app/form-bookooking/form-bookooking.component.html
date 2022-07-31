@@ -1,0 +1,108 @@
+<div class="booking-form">
+    <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" novalidate >
+        <div class="form-group row">
+            <div class="col-12 col-md-6 col-lg-6">
+              <label  for="date-start" >Дата заезда</label>
+              <input formControlName="dateStart" [ngClass]= "{
+                'is-valid':  !m.dateStart.invalid ,
+                'is-invalid': m.dateStart.invalid  }" required type="date" id="date-start" name="date-start" class="form-control" >
+              <div *ngIf="m.dateStart.invalid" class="invalid-feedback">
+                <div *ngIf="m.dateStart.invalid">Пожалуйста укажите дату заезда</div>              
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+              <label  for="date-end">Дата выезда</label>
+              <input  formControlName="dateEnd" [ngClass]= "{
+                'is-valid':  !m.dateEnd.invalid ,
+                'is-invalid': m.dateEnd.invalid }"  required type="date" name="date-end" class="form-control" >
+              <div *ngIf="m.dateEnd.invalid" class="invalid-feedback">
+                <div *ngIf="m.dateEnd.invalid">Пожалуйста укажите дату выезда</div>              
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-inline">
+             <label for="inputRoom">Номер  </label>
+                <select formControlName="selectedRoom" [ngClass]= "{
+                  'is-valid':  !m.selectedRoom.invalid && m.selectedRoom.touched,
+                  'is-invalid': m.selectedRoom.invalid && m.selectedRoom.touched }"  id="inputRoom" class="col-md-12 nice-select col-12" name="room" (ngModelChange)="onChangeRoom()" >
+                  <option *ngFor="let room of rooms" [ngValue]="room">{{room.name}}</option>
+                </select>
+           </div>
+           <div class="form-group row">
+              <div class="col-12 col-md-6 col-lg-6">
+                <label for="firstname">Имя</label>
+                <input  formControlName="firstName" [ngClass]= "{
+                  'is-valid':  !m.firstName.invalid && m.firstName.touched,
+                  'is-invalid': m.firstName.invalid && m.firstName.touched }"  autocomplete="off" required type="name" class="form-control" id="firstname" name="firstname" >
+                <div *ngIf="m.firstName.touched && m.firstName.invalid" class="invalid-feedback">
+                  <div *ngIf="m.firstName.invalid">Пожалуйста укажите ваше имя</div>              
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-6">
+                <label for="lastname">Фамилия</label>
+                <input  required type="name" [ngClass]= "{
+                  'is-valid':  !m.lastName.invalid && m.lastName.touched,
+                  'is-invalid': m.lastName.invalid && m.lastName.touched }" formControlName="lastName" autocomplete="off" class="form-control" id="lastname" name="lastname" >
+                <div *ngIf="m.lastName.touched && m.lastName.invalid" class="invalid-feedback">
+                  <div *ngIf="m.lastName.invalid">Пожалуйста укажите вашу фамилию</div>              
+                </div>
+              </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-12 col-md-6 col-lg-6">
+              <label  for="date-start" >Количество взрослых</label>
+              <input autocomplete="off" [ngClass]= "{
+                'is-valid':  !m.adults.invalid && m.adults.touched,
+                'is-invalid': m.adults.invalid && m.adults.touched }" formControlName="adults" required type="number" id="adult" name="adult" class="form-control" >
+              <div *ngIf="m.adults.touched && m.adults.invalid" class="invalid-feedback">
+                <div *ngIf="m.adults.invalid">Пожалуйста укажите количество взрослых</div>              
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+              <label  for="date-end">Количество детей</label>
+              <input type="children" formControlName="children" name="children" class="form-control" minlength="0" type="number" >
+            </div>
+          </div>
+
+          <div class="form-group form-inline">
+            <label for="phone">Телефон</label>
+            <input formControlName="phoneNumber"  [ngClass]= "{
+              'is-valid':  !m.phoneNumber.invalid && m.phoneNumber.touched,
+              'is-invalid': m.phoneNumber.invalid && m.phoneNumber.touched }" type="tel" name="phone" id="phone" class="form-control mx-sm-3" aria-describedby="phoneHelpInline">
+              <div
+              *ngIf="m.phoneNumber.invalid && m.phoneNumber.touched"
+            >
+              <small   *ngIf="m.phoneNumber.errors?.['required']" style="display:block" class="invalid-feedback">
+              Пожалуйста укажите номер телефона          
+            </small>
+            <small   *ngIf=" m.phoneNumber.errors?.['pattern']" style="display:block" class="invalid-feedback">
+              Укажите корректный телефон       
+            </small>
+           
+           </div>
+           <small  *ngIf="m.phoneNumber.valid && m.phoneNumber.touched " style="display:block" class="valid-feedback">
+            Отлично, мы свяжемся с вами по этому номеру
+           </small>
+          </div>
+
+          <div class="form-group form-inline">
+            <label for="messanger">Мессенджер</label>
+            <select formControlName="messanger" id="inputRoom" id="messanger" name="messanger" class="form-control mx-sm-3 " aria-describedby="messangerHelpInline">
+                <option selected>Не выбрано</option>
+                <option value="Telegram">У меня нет мессенджера</option>
+                <option value="Telegram">Telegram</option>
+                <option value="WhatsApp">WhatsApp </option>
+                <option value="VIBER">VIBER</option>
+              </select>
+            <small id="messangerHelpInline" class="text-muted " >                       
+                Мы вышлем информацию по бронированию, на указанный мессенджер
+            </small>
+          </div>
+          
+        <div class="d-flex justify-content-center bd-highlight mb-3" >
+          <div class="p-2 justify-content-center col-md-4">
+            <button type="submit" class="btn btn-primary" [disabled]="bookingForm.invalid">Забронировать</button>
+          </div>
+        </div>
+      </form>
+</div>
