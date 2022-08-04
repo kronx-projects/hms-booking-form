@@ -16,7 +16,7 @@ import { Request } from './interfaces/request';
 })
 export class BookingService {
 
-  apiUrl: string = 'https://localhost:8080/api/v1/request';
+  apiUrl: string = 'http://62.113.100.162:8080/api/v1/request';
   
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
