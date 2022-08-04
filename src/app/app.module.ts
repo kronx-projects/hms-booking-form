@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { HostelInfoComponent } from './hostel-info/hostel-info.component';
 import { SelectedRoomComponent } from './selected-room/selected-room.component';
 import { RoomServices } from './services/roomServices';
+import { LeftColumnComponent } from './left-column/left-column.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { RoomServices } from './services/roomServices';
     HeaderComponent,
     HostelInfoComponent,
     SelectedRoomComponent,
+    LeftColumnComponent,
   ],
   imports: [
     BrowserModule,

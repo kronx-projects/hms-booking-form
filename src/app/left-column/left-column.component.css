@@ -1,0 +1,40 @@
+.z-depth-2 {
+    -moz-box-shadow: 0px 5px 10px 4px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 5px 10px 4px rgb(34 60 80 / 20%);
+    border-radius: 5px;
+}
+.important-block {
+    background-color: #ffff008f!important;
+}
+
+.booking-left-block, .booking-right-block {
+    
+    background-color: white;
+    min-height: 80px;
+    width: 100%;
+    height: auto;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.booking-block-header {
+    font-size: 20px;
+    padding: 5px 10px;
+    font-weight: 600;
+} 
+
+.padding-min {
+    padding: 10px;
+}
+
+.block-ul {
+    padding-left: 30px;
+    padding-right:20px;
+    padding-top: 10px ;
+    padding-bottom: 10px;
+}
+
+.margin-top-big {
+    margin-top: 65px !important;
+}

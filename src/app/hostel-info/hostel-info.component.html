@@ -1,4 +1,4 @@
-<div class="booking-left-block margin-top-big">
+<div class="booking-left-block ">
     <h2 class="title-block-h2">Общая информация:</h2>
     <h3 class="title-block-h3">"Уютный Уголок" частный сектор в Кабардинке</h3>
     <div class="row">
@@ -12,10 +12,11 @@
         </div>
     </div>
 </div>
-<div class="booking-left-block">
+<div class="booking-left-block" *ngIf="selectedRoom.countPerson">
     <div class="col-md-12" >
-        <h3 class="title-block-h2">Вы бронируете: <br> <b>{{selectedRoom.name}}</b></h3>
-        <div class="row"  *ngIf="selectedRoom.countPerson">
+        <h3 class="title-block-h2">Вы бронируете:</h3>
+        <h4 class="title-block-h4">{{selectedRoom.name}}</h4>
+        <div class="row"  >
             <div class="col-sm-5">
                 <img [src]="selectedRoom.image" 
                     style="width: 100%;">

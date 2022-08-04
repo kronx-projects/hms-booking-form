@@ -28,9 +28,10 @@ export class FormBookookingComponent implements OnInit {
       Validators.pattern(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/),
     ]
     ),
-    "children": new FormControl(0, []),
+    "children": new FormControl("", []),
     "selectedRoom" : new FormControl(),
-    "messanger": new FormControl<String>("")
+    "messanger": new FormControl<String>(""),
+    "message": new FormControl()
   });
   rooms: Array<Room> = ROOMS;
 
@@ -50,6 +51,21 @@ export class FormBookookingComponent implements OnInit {
 
   ngOnInit(): void {
     this.rooms = ROOMS;
+    let room = this.getRoomByHref()
+    if (room != undefined ) {
+      this.selectedRoom = room
+      this.roomSerivces.changeRoom(this.selectedRoom);
+      this.bookingForm.controls.selectedRoom.setValue(this.selectedRoom);
+    }
+
+  }
+
+  getRoomByHref(): Room | undefined {
+    var url = window.location.href;
+    var val = Number(url.split('=').pop()) ;
+    let room : Room | undefined = this.rooms.find(x => x.id === val)
+    return room
+
   }
   get m() {
     return this.bookingForm.controls;
@@ -67,7 +83,7 @@ export class FormBookookingComponent implements OnInit {
       "last-name": obj.lastName,
       "phone-number": obj.phoneNumber,
       "messenger": obj.messanger,
-      "comment": "test"
+      "comment":  obj.message
     }
     this.bookingService.createRequest(requestToSend).subscribe( val => {
       console.log(val)

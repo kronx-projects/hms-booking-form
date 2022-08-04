@@ -1,27 +1,35 @@
+
+<app-header></app-header>
 <div class="booking-form">
     <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" novalidate >
         <div class="form-group row">
-            <div class="col-12 col-md-6 col-lg-6">
-              <label  for="date-start" >Дата заезда</label>
+            <div class="col-12 col-md-12 col-lg-6">
+              <label  for="date-start" >Дата заезда:
+                <span class="required-field">*</span>
+              </label>
               <input formControlName="dateStart" [ngClass]= "{
                 'is-valid':  !m.dateStart.invalid ,
-                'is-invalid': m.dateStart.invalid  }" required type="date" id="date-start" name="date-start" class="form-control" >
+                'is-invalid': m.dateStart.invalid  && m.dateStart.touched }" required type="date" id="date-start" name="date-start" class="form-control" >
               <div *ngIf="m.dateStart.invalid" class="invalid-feedback">
-                <div *ngIf="m.dateStart.invalid">Пожалуйста укажите дату заезда</div>              
+                <div *ngIf="m.dateStart.invalid && m.dateStart.touched">Пожалуйста укажите дату заезда</div>              
               </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-6">
-              <label  for="date-end">Дата выезда</label>
+            <div class="col-12 col-md-12 col-lg-6">
+              <label  for="date-end">Дата выезда:
+                <span class="required-field">*</span>
+              </label>
               <input  formControlName="dateEnd" [ngClass]= "{
                 'is-valid':  !m.dateEnd.invalid ,
-                'is-invalid': m.dateEnd.invalid }"  required type="date" name="date-end" class="form-control" >
+                'is-invalid': m.dateEnd.invalid  && m.dateEnd.touched }"  required type="date" name="date-end" class="form-control" >
               <div *ngIf="m.dateEnd.invalid" class="invalid-feedback">
-                <div *ngIf="m.dateEnd.invalid">Пожалуйста укажите дату выезда</div>              
+                <div *ngIf="m.dateEnd.invalid  && m.dateEnd.touched">Пожалуйста укажите дату выезда</div>              
               </div>
             </div>
           </div>
           <div class="form-group form-inline">
-             <label for="inputRoom">Номер  </label>
+             <label for="inputRoom">Номер:
+              <span class="required-field">*</span>
+             </label>
                 <select formControlName="selectedRoom" [ngClass]= "{
                   'is-valid':  !m.selectedRoom.invalid && m.selectedRoom.touched,
                   'is-invalid': m.selectedRoom.invalid && m.selectedRoom.touched }"  id="inputRoom" class="col-md-12 nice-select col-12" name="room" (ngModelChange)="onChangeRoom()" >
@@ -30,7 +38,9 @@
            </div>
            <div class="form-group row">
               <div class="col-12 col-md-6 col-lg-6">
-                <label for="firstname">Имя</label>
+                <label for="firstname">Имя:
+                  <span class="required-field">*</span>
+                </label>
                 <input  formControlName="firstName" [ngClass]= "{
                   'is-valid':  !m.firstName.invalid && m.firstName.touched,
                   'is-invalid': m.firstName.invalid && m.firstName.touched }"  autocomplete="off" required type="name" class="form-control" id="firstname" name="firstname" >
@@ -38,8 +48,10 @@
                   <div *ngIf="m.firstName.invalid">Пожалуйста укажите ваше имя</div>              
                 </div>
               </div>
-              <div class="col-12 col-md-6 col-lg-6">
-                <label for="lastname">Фамилия</label>
+              <div class="col-12 col-md-12 col-lg-6">
+                <label for="lastname">Фамилия:
+                  <span class="required-field">*</span>
+                </label>
                 <input  required type="name" [ngClass]= "{
                   'is-valid':  !m.lastName.invalid && m.lastName.touched,
                   'is-invalid': m.lastName.invalid && m.lastName.touched }" formControlName="lastName" autocomplete="off" class="form-control" id="lastname" name="lastname" >
@@ -49,8 +61,10 @@
               </div>
           </div>
           <div class="form-group row">
-            <div class="col-12 col-md-6 col-lg-6">
-              <label  for="date-start" >Количество взрослых</label>
+            <div class="col-12 col-md-12 col-lg-6">
+              <label  for="date-start" >Количество взрослых:
+                <span class="required-field">*</span>
+              </label>
               <input autocomplete="off" [ngClass]= "{
                 'is-valid':  !m.adults.invalid && m.adults.touched,
                 'is-invalid': m.adults.invalid && m.adults.touched }" formControlName="adults" required type="number" id="adult" name="adult" class="form-control" >
@@ -65,7 +79,9 @@
           </div>
 
           <div class="form-group form-inline">
-            <label for="phone">Телефон</label>
+            <label for="phone">Телефон:
+              <span class="required-field">*</span>
+            </label>
             <input formControlName="phoneNumber"  [ngClass]= "{
               'is-valid':  !m.phoneNumber.invalid && m.phoneNumber.touched,
               'is-invalid': m.phoneNumber.invalid && m.phoneNumber.touched }" type="tel" name="phone" id="phone" class="form-control mx-sm-3" aria-describedby="phoneHelpInline">
@@ -98,7 +114,17 @@
                 Мы вышлем информацию по бронированию, на указанный мессенджер
             </small>
           </div>
-          
+       
+        <div class="form-group">
+          <label for="message">Сообщение:</label>
+          <textarea formControlName="message" class="form-control" id="message" rows="3" placeholder="Ваши вопросы и пожеления"></textarea>
+        </div>
+
+        <div class="col-12">
+          <label id="podskazka" class="help-block" for="singlebutton">
+            <span class="required-field">*</span>
+             - обязательные поля</label>
+      </div>
         <div class="d-flex justify-content-center bd-highlight mb-3" >
           <div class="p-2 justify-content-center col-md-4">
             <button type="submit" class="btn btn-primary" [disabled]="bookingForm.invalid">Забронировать</button>
