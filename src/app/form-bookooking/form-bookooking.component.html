@@ -1,6 +1,12 @@
 
 <app-header></app-header>
 <div class="booking-form">
+  <div  *ngIf="isSend" class="alert alert-success fade show" role="alert">
+    Спасибо, ваша заявка успешно отправлена.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
     <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" novalidate >
         <div class="form-group row">
             <div class="col-12 col-md-12 col-lg-6">
