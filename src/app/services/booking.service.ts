@@ -6,7 +6,7 @@ import {
   HttpHeaders,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Request } from './interfaces/request';
+import { Request } from '../interfaces/request';
 @Injectable({
   providedIn: 'root',
 })
@@ -27,7 +27,6 @@ export class BookingService {
   // Create
   createRequest(data: any): Observable<any> {
     let API_URL = `${this.apiUrl}/new-request`;
-    console.log(data);
     return this.http.post<any>(API_URL, data, this.httpOptions).pipe(catchError(this.error));
   }
   // Handle Errors

@@ -6,7 +6,7 @@ import { ROOMS } from '../mook/ROOMS';
 import { RoomServices } from '../services/roomServices';
 import { Request } from '../interfaces/request';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { BookingService } from '../booking.service';
+import { BookingService } from '../services/booking.service';
 
 
 
@@ -34,12 +34,15 @@ export class FormBookookingComponent implements OnInit {
     "message": new FormControl()
   });
   rooms: Array<Room> = ROOMS;
-
+  isSend: Boolean = false;
   selectedRoom: any = { id: 0, image: "", area: 0, name: "", name2:"", countPerson: 0 };
   onChangeRoom() {
 
     this.selectedRoom = this.bookingForm.get("selectedRoom")?.value;
-    this.roomSerivces.changeRoom(this.selectedRoom);
+    if (this.selectedRoom != null) {
+      this.roomSerivces.changeRoom(this.selectedRoom);
+    }
+    
   }
   constructor(
     private bookingService: BookingService,
@@ -61,8 +64,8 @@ export class FormBookookingComponent implements OnInit {
   }
 
   getRoomByHref(): Room | undefined {
-    var url = window.location.href;
-    var val = Number(url.split('=').pop()) ;
+    var url = window.location.href
+    var val = Number(url.split('=').pop()) 
     let room : Room | undefined = this.rooms.find(x => x.id === val)
     return room
 
@@ -72,7 +75,7 @@ export class FormBookookingComponent implements OnInit {
   }
   onSubmit(): void {
 
-    let obj = this.bookingForm.getRawValue();
+    let obj = this.bookingForm.getRawValue()
     let requestToSend = {
       "date-start" : obj.dateStart,
       "date-end" : obj.dateEnd,
@@ -86,7 +89,8 @@ export class FormBookookingComponent implements OnInit {
       "comment":  obj.message
     }
     this.bookingService.createRequest(requestToSend).subscribe( val => {
-      console.log(val)
+      this.isSend = true;
+      this.bookingForm.reset();
      })
   }
 
